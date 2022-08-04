@@ -3,84 +3,88 @@ import Header from "../components/Header";
 import { Sidebar } from "../components/Sidebar";
 import dynamic from "next/dynamic";
 import { ApexOptions } from "apexcharts";
-const Chart = dynamic(() => import('react-apexcharts'), {
-  ssr: false
-})
+const Chart = dynamic(() => import("react-apexcharts"), {
+  ssr: false,
+});
 
 const options: ApexOptions = {
   chart: {
     toolbar: {
-      show: false
+      show: false,
     },
     zoom: {
-      enabled: false
+      enabled: false,
     },
-    foreColor: theme.colors.gray[700]
+    foreColor: theme.colors.gray[700],
   },
   grid: {
-    show: false
+    show: false,
   },
   dataLabels: {
-    enabled: false
+    enabled: false,
   },
   tooltip: {
-    enabled: false
+    enabled: false,
   },
   xaxis: {
-    type: 'datetime',
+    type: "datetime",
     axisBorder: {
-      color: theme.colors.gray[700]
+      color: theme.colors.gray[700],
     },
     axisTicks: {
-      color: theme.colors.gray[700]
+      color: theme.colors.gray[700],
     },
     categories: [
-      '2022-03-18T00:00:00.000Z',
-      '2022-03-19T00:00:00.000Z',
-      '2022-03-20T00:00:00.000Z',
-      '2022-03-21T00:00:00.000Z',
-      '2022-03-22T00:00:00.000Z',
-      '2022-03-23T00:00:00.000Z',
-      '2022-03-24T00:00:00.000Z',
+      "2022-03-18T00:00:00.000Z",
+      "2022-03-19T00:00:00.000Z",
+      "2022-03-20T00:00:00.000Z",
+      "2022-03-21T00:00:00.000Z",
+      "2022-03-22T00:00:00.000Z",
+      "2022-03-23T00:00:00.000Z",
+      "2022-03-24T00:00:00.000Z",
     ],
   },
-  colors:[theme.colors.orange[500]],
+  colors: [theme.colors.orange[500]],
   fill: {
     opacity: 0.3,
-    type: 'gradient',
+    type: "gradient",
     gradient: {
-      shade: 'dark',
+      shade: "dark",
       opacityFrom: 0.7,
       opacityTo: 0.3,
     },
-    colors: [theme.colors.orange[400]]
-  }
-}
+    colors: [theme.colors.orange[400]],
+  },
+};
 
 const series = [
   {
-    name: 'series1', data: [31, 120, 10, 28, 61, 18, 109]
-  }
-]
+    name: "series1",
+    data: [31, 120, 10, 28, 61, 18, 109],
+  },
+];
 
 export default function Dashboard() {
   return (
     <Flex direction="column" h="100vh">
       <Header />
       <Flex w="100%" my="6" maxWidth={1480} mx="auto" px="6">
-        <Sidebar/>
+        <Sidebar />
 
-      <SimpleGrid flex="1" gap="4" minChildWidth="320px" >
-        <Box p="8" bg="gray.800" borderRadius={8} pb="4">
-        <Text fontSize="lg" mb="4" >Inscritos da semana</Text>
-        <Chart options={options} series={series} type="area" height={160} />        
-        </Box>
-        <Box p="8" bg="gray.800" borderRadius={8} pb="4">
-        <Text fontSize="lg" mb="4" >Taxa de abertura</Text>
-        <Chart options={options} series={series} type="area" height={160} />        
-        </Box>
-      </SimpleGrid>
-
+        <SimpleGrid flex="1" gap="4" minChildWidth="320px">
+          <Box p={["6", "8"]} bg="gray.800" borderRadius={8} pb="4">
+            <Text fontSize="lg" mb="4">
+              Inscritos da semana
+            </Text>
+            <Chart options={options} series={series} type="area" height={160} />
+          </Box>
+          <Box p={["6", "8"]} bg="gray.800" borderRadius={8} pb="4">
+            <Text fontSize="lg" mb="4">
+              Taxa de abertura
+            </Text>
+            <Chart options={options} series={series} type="area" height={160} />
+          </Box>
+        </SimpleGrid>
       </Flex>
     </Flex>
   );
